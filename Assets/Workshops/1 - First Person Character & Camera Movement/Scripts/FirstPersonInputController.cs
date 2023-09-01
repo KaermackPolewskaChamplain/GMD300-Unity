@@ -194,15 +194,15 @@ public class FirstPersonInputController : MonoBehaviour
     {
         if(characterController.isGrounded && verticalMovement < 0)
         {
+            //When grounded, set isJumping to False
             isJumping = false;
+            //Force the vertical movement to be 0 when its value is lower than 0
             verticalMovement = 0;
         }
 
         //This is the equivalent of checking GetButtonDown. It is true only the first frame the button is pressed, then it becomes false.
         //Highly useful for situation where you don't want to track the input the whole time the button is pressed
         bool jumpButtonDown = jumpAction.triggered && jumpAction.ReadValue<float>() > 0;
-
-        Debug.Log(verticalMovement +" " +characterController.isGrounded + " " + jumpButtonDown);
 
         //If the jumpAction was triggered this frame, this will trigger the jumping sequence, otherwise it sets isJumping to false
         //This condition and the one above could both possibly happen the same frame. This would be a fine case, but a rare occurence
@@ -239,8 +239,11 @@ public class FirstPersonInputController : MonoBehaviour
         verticalRotation -= inputRotation.y * Time.deltaTime;
         verticalRotation = Mathf.Clamp(verticalRotation, -85f, 85f);
 
+        //Both the character and the camera gets rotated, but on a different axis.
+        //We are using the localRotation for the camera since it is the children of the character gameobject.
+        //Transform.rotation is always the world space value, not the local space that you would get from a child gameobject
         transform.rotation = Quaternion.Euler(0, horizontalRotation, 0);
-        FirstPersonCamera.transform.rotation = Quaternion.Euler(verticalRotation, horizontalRotation, 0);
+        FirstPersonCamera.transform.localRotation = Quaternion.Euler(verticalRotation, 0, 0);
     }
 
     private void ApplyInputMovement()
