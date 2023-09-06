@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1681963730982562737}
   - component: {fileID: 4101930618703818040}
   m_Layer: 0
-  m_Name: Trigger Interaction Object
+  m_Name: Trigger Interaction Inventory Object
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

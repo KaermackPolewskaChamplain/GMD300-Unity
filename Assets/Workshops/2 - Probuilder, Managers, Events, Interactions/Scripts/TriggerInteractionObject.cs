@@ -16,7 +16,8 @@ public class TriggerInteractionObject : MonoBehaviour
         {
             //When that happens, we add an object to the Singleton Game Manager using the following line
             SimpleGameManagerSingleton.Instance.AddObjectsToInventory(1);
-            //We then destroy this gameobject since we collected it
+
+            //We then destroy this item since we collected it
             Destroy(this.gameObject);
         }
     }

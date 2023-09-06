@@ -4,46 +4,52 @@ using UnityEngine;
 
 public class SimpleGameManagerSingleton : MonoBehaviour
 {
-    //Sometimes, you want to be able to access a Game Manager from everywhere in your code, for instance when you want to edit the player score
-    //While your script could directly reference the game manager, there is a better way for systems that involve a single unique manager.
+    //Sometimes, you want to be able to access a Game Manager from ANYWHERE in your code, without needing to reference it
+    //While indeed you could reference the game manager directly in a script, there is a pattern that allows you to publicly access a manager class
 
     //Introducing the singleton pattern!
-    //In essence, a singleton can be accessed from pretty much anywhere and will always reference to your single manager.
-    //You can use this pattern to keep track of active values during gameplay, generally involving high level game logic.
-    //For example, it can be used in Game Logic Managers, Score Managers, Player Managers and any management class that will be unique.
-    //The singleton pattern CANNOT be used for any object that will/can be duplicated, such as objects and enemies.
-    //If you need a singleton pattern to keep track of enemy count for instance, you can place that logic into an EnemyManager class instead.
-    //Generally, any class that uses a singleton pattern will have "Manager" in its name, implying it's unique architecture and usage.
+    //One Manager to rule them all...
 
-    //This is probably one of the simplest functional singleton pattern that works in Unity, but it can be further expanded of course.
-    //More info about other implementations here: https://learn.microsoft.com/en-us/previous-versions/msp-n-p/ff650849(v=pandp.10)
+    //Essentially, a singleton manager allows you to have a unique instance of a manager accessible publicly anywhere.
+    //The singleton pattern also ensures that the manager is unique. No other instance can exist, there can be only 1 singleton manager of a particular type
+    //Any class that uses a singleton pattern should have "Manager" in its name, implying it's unique architecture and usage.
 
-    //This "Instance" variable will be used to keep track of the singleton reference
+    //This code below is one of the simplest functional singleton pattern that works in Unity, but it can be further expanded to your needs.
+    //Please refer to the Reference Material folder for additional implementations
+
+    //The "Instance" variable will keep track of the singleton manager reference
+    //This is HOW you will access your singleton, by simply calling SimpleGameManagerSingleton.Instance
     //While you can name this variable however you want, the standard is to name it "Instance"
-    //The variable type MUST be the same type as your manager script since it will self reference itself.
+    //The instance type MUST be the same type as your manager script since it will self reference itself.
 
     //You can notice that it has 2 modifiers, Public and Static.
     //Public allows the variable to be accessible from other classes/scripts
-    //Static makes the variable essentially "Global"
+    //Static makes the variable essentially "Global" and "Shared"
 
     //What does that mean?
-    //The value of this variable is global. Even if I were to attach this script on several gameobjects, the value of this variable would be
-    //exactly the same no matter where I access it and no matter the object.
-    //This is what makes the singleton pattern work.
-    //No matter where you are in the code, if you type SimpleGameManagerSingleton.Instance, you will always get the same value.
-    //And what is that value? Check the RegisterManager and UnregisterManager functions to know!
+    //The value of a static variable is global and shared to all instances of a class.
+    //For example, if I have a class named "EnemyController" and I have a static variable named "TotalEnemyCount", all enemies that use that script will share the same value for "TotalEnemyCount".
+    //If one of the enemy changes the static variable, ALL enemies will see the updated value of the static variable.
+    //This is why we say it is "shared" and "global" between all instances.
 
+    //To make a singleton, we use this property.
+    //No matter in which script you are, if you type SimpleGameManagerSingleton.Instance, you will be able to access the same manager instance.
+    //The singleton will also ensure that copies of the manager gets destroyed, so that only 1 single instance can exist at all times.
+
+    //The Instance singleton variable MUST be Public, Static and use the same type as the script to work
     public static SimpleGameManagerSingleton Instance;
 
+    //A simple example using the singleton pattern. Please check the TriggerInteractionObject to see how we use this
     public int ObjectCountExample = 0;
 
     //OnEnable gets called when the component is starting initialization, after the awake method
-    private void OnEnable()
+    private void Awake()
     {
         RegisterManager();
     }
 
     //OnDisable gets called when the component or gameobject gets disabled or destroyed
+    //We ensure to destroy the singleton instance in this case as the manager wouldn't exist anymore
     private void OnDisable()
     {
         UnregisterManager();
@@ -51,17 +57,17 @@ public class SimpleGameManagerSingleton : MonoBehaviour
 
     private void RegisterManager()
     {
-        //If the Instance variable is not set yet, then make sure that this component object actually becomes the Instance.
+        //If the Instance variable is not set yet, then make sure that this instance actually becomes the Singleton Instance.
         //We set DonDestroyOnLoad to this gameobject, ensuring that we don't lose this manager when we load a scene
         if (Instance == null)
         {
             Instance = this;
             DontDestroyOnLoad(this.gameObject);
         }
-        //If the instance is actually set, that means another object got set as the Singleton instance of the manager.
-        //That means this object shouldn't exist, as we MUST have only 1 instance of any type of manager using the singleton pattern
+        //If the singleton instance is actually set AND it is not this object, we destroy it.
+        //That means this instance shouldn't exist, as we MUST have only 1 instance of that manager using the singleton pattern
         //So we Destroy(this), meaning we destroy this instance of the component SimpleGameManagerSingleton
-        else
+        else if(Instance != this)
         {
             Destroy(this);
         }
