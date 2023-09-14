@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SimpleGameManagerSingleton : MonoBehaviour
+public class InventoryManager : MonoBehaviour
 {
     //Sometimes, you want to be able to access a Game Manager from ANYWHERE in your code, without needing to reference it
     //While indeed you could reference the game manager directly in a script, there is a pattern that allows you to publicly access a manager class
@@ -37,7 +37,7 @@ public class SimpleGameManagerSingleton : MonoBehaviour
     //The singleton will also ensure that copies of the manager gets destroyed, so that only 1 single instance can exist at all times.
 
     //The Instance singleton variable MUST be Public, Static and use the same type as the script to work
-    public static SimpleGameManagerSingleton Instance;
+    public static InventoryManager Instance;
 
     //A simple example using the singleton pattern. Please check the TriggerInteractionObject to see how we use this
     public int ObjectCountExample = 0;
@@ -97,6 +97,11 @@ public class SimpleGameManagerSingleton : MonoBehaviour
         {
             ObjectCountExample = 0;
         }
+    }
+
+    public void ResetInventory()
+    {
+        ObjectCountExample = 0;
     }
 
     public int GetInventoryObjectTotal()

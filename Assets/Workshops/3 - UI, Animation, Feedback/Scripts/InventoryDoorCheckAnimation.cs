@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InventoryDoorCheck : MonoBehaviour
+[RequireComponent(typeof(Animator))]
+public class InventoryDoorCheckAnimation : MonoBehaviour
 {
     public int ObjectsRequiredToUnlock = 7;
 
@@ -13,9 +14,14 @@ public class InventoryDoorCheck : MonoBehaviour
     
     private int lastUpdatedSlot = 0;
 
+    private Animator animator;
+
     private void Awake()
     {
-        foreach(MeshRenderer doorSlot in doorSlotList)
+        animator = GetComponent<Animator>();
+        animator.SetBool("isOpened", false);
+
+        foreach (MeshRenderer doorSlot in doorSlotList)
         {
             if(doorSlot == null)
             {
@@ -36,7 +42,7 @@ public class InventoryDoorCheck : MonoBehaviour
 
             if(lastUpdatedSlot == ObjectsRequiredToUnlock)
             {
-                Destroy(this.gameObject);
+                animator.SetBool("isOpened", true);
             }
         }
     }

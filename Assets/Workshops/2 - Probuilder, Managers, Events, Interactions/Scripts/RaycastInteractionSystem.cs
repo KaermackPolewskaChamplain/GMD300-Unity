@@ -21,18 +21,14 @@ public class RaycastInteractionSystem : MonoBehaviour
 
     private void Update()
     {
-        //We check if the interact button is down for this frame only
-        bool interactButtonDown = interactAction.triggered && interactAction.ReadValue<float>() > 0;
-
-        //If the button is down, we send the raycast
-        if (interactButtonDown)
-        {
-            RaycastInteraction();
-        }
+        RaycastInteraction();
     }
 
     private void RaycastInteraction()
     {
+        //This boolean is used to track whether or not we found an interactible, to trigger the UI interactible panel
+        bool foundInteractible = false;
+
         //Let's build a laser..! Starting at the camera position and pointing forward. This will be the base of the raycast.
         Ray ray = new Ray(FirstPersonCamera.transform.position, FirstPersonCamera.transform.forward);
 
@@ -49,10 +45,22 @@ public class RaycastInteractionSystem : MonoBehaviour
             //A better system would use an interface and a layer filtering system for instance, or an event system
             if (hitInfo.transform.tag == "Interactible")
             {
-                //We send a message to the hit object to start the method OnInteract of any component
-                //We set SendMessageOptions.DontRequireReceiver to make sure Unity doesn't throw an error if there is no receiving function
-                hitInfo.transform.SendMessage("OnInteract", SendMessageOptions.DontRequireReceiver);
+                foundInteractible = true;
+
+                //We check if the interact button is down for this frame only
+                bool interactButtonDown = interactAction.triggered && interactAction.ReadValue<float>() > 0;
+
+                //If the button is pressed...
+                if (interactButtonDown)
+                {
+                    //We send a message to the hit object to start the method OnInteract of any component
+                    //We set SendMessageOptions.DontRequireReceiver to make sure Unity doesn't throw an error if there is no receiving function
+                    hitInfo.transform.SendMessage("OnInteract", SendMessageOptions.DontRequireReceiver);
+                }
             }
         }
+
+        //We send the foundInteractible boolean value to the UI Manager, to control the visibility of the interact prompt
+        UIManager.Instance.ShowInteractPrompt(foundInteractible);
     }
 }

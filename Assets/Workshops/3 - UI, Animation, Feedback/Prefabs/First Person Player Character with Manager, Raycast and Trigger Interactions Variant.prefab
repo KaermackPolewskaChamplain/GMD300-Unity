@@ -1,0 +1,96 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &5425387340652045178
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6141550749130916461, guid: 1a6d165287c503540a19e1d9579fe3c9, type: 3}
+      propertyPath: m_ClearFlags
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6141550749130916461, guid: 1a6d165287c503540a19e1d9579fe3c9, type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6141550749130916461, guid: 1a6d165287c503540a19e1d9579fe3c9, type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 0.07576767
+      objectReference: {fileID: 0}
+    - target: {fileID: 6141550749130916461, guid: 1a6d165287c503540a19e1d9579fe3c9, type: 3}
+      propertyPath: m_BackGroundColor.r
+      value: 0.3018868
+      objectReference: {fileID: 0}
+    - target: {fileID: 8109414349146393070, guid: 1a6d165287c503540a19e1d9579fe3c9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8109414349146393070, guid: 1a6d165287c503540a19e1d9579fe3c9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.125
+      objectReference: {fileID: 0}
+    - target: {fileID: 8109414349146393070, guid: 1a6d165287c503540a19e1d9579fe3c9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -8.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 8109414349146393070, guid: 1a6d165287c503540a19e1d9579fe3c9, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8109414349146393070, guid: 1a6d165287c503540a19e1d9579fe3c9, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8109414349146393070, guid: 1a6d165287c503540a19e1d9579fe3c9, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8109414349146393070, guid: 1a6d165287c503540a19e1d9579fe3c9, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8109414349146393070, guid: 1a6d165287c503540a19e1d9579fe3c9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8109414349146393070, guid: 1a6d165287c503540a19e1d9579fe3c9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8109414349146393070, guid: 1a6d165287c503540a19e1d9579fe3c9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8733718235129659254, guid: 1a6d165287c503540a19e1d9579fe3c9, type: 3}
+      propertyPath: m_Name
+      value: First Person Player Character with Manager, Raycast and Trigger Interactions
+        Variant
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8733718235129659254, guid: 1a6d165287c503540a19e1d9579fe3c9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 218171827341271888}
+  m_SourcePrefab: {fileID: 100100000, guid: 1a6d165287c503540a19e1d9579fe3c9, type: 3}
+--- !u!1 &3638556091299027980 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8733718235129659254, guid: 1a6d165287c503540a19e1d9579fe3c9, type: 3}
+  m_PrefabInstance: {fileID: 5425387340652045178}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &218171827341271888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3638556091299027980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e94df48c7239a54f978d9466bb45ebd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

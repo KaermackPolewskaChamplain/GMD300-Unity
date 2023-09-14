@@ -15,7 +15,7 @@ public class TriggerInteractionObject : MonoBehaviour
         if(other.tag == "Player")
         {
             //When that happens, we add an object to the Singleton Game Manager using the following line
-            SimpleGameManagerSingleton.Instance.AddObjectsToInventory(1);
+            InventoryManager.Instance.AddObjectsToInventory(1);
 
             //We then destroy this item since we collected it
             Destroy(this.gameObject);
