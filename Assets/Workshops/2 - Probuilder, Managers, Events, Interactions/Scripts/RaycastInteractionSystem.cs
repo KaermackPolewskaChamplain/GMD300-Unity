@@ -60,7 +60,10 @@ public class RaycastInteractionSystem : MonoBehaviour
             }
         }
 
-        //We send the foundInteractible boolean value to the UI Manager, to control the visibility of the interact prompt
-        UIManager.Instance.ShowInteractPrompt(foundInteractible);
+        if(UIManager.Instance != null)
+        {
+            //We send the foundInteractible boolean value to the UI Manager, to control the visibility of the interact prompt
+            UIManager.Instance.ShowInteractPrompt(foundInteractible);
+        }
     }
 }
