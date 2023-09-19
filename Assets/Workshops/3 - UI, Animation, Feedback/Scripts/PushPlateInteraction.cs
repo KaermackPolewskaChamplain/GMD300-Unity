@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using DG.Tweening;
 
 [RequireComponent(typeof(Animator))]
 public class PushPlateInteraction : MonoBehaviour
@@ -23,6 +24,7 @@ public class PushPlateInteraction : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+            //We call the OnPushPlate Unity event
             OnPushPlatePress.Invoke();
 
             animator.SetBool("isPressed", true);
