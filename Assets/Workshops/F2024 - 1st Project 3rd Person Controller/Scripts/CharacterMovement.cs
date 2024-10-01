@@ -10,6 +10,7 @@ public class CharacterMovement : MonoBehaviour
     public float MovementAcceleration = 10.0f;
     public float JumpForce = 1.0f;
     public float RotationAcceleration = 5.0f;
+    public float ExternalForceMultiplier = 0.5f;
 
     CharacterController controller;
 
@@ -18,12 +19,14 @@ public class CharacterMovement : MonoBehaviour
     Vector2 absoluteMoveInput = Vector2.zero;
     Vector3 relativeMoveInput = Vector3.zero;
 
-    Vector3 desiredHorizontalVelocity = Vector3.zero;
+    Vector3 maximumHorizontalVelocity = Vector3.zero;
     Vector3 currentHorizontalVelocity = Vector3.zero;
 
     Vector3 currentVerticalVelocity = Vector3.zero;
 
     Vector3 currentVelocity = Vector3.zero;
+
+    Vector3 externalVelocity = Vector3.zero;
 
     void Awake()
     {
@@ -58,11 +61,11 @@ public class CharacterMovement : MonoBehaviour
         relativeMoveInput = relativeMoveInput.normalized;
 
         //Compute the desired speed
-        desiredHorizontalVelocity = relativeMoveInput;
-        desiredHorizontalVelocity *= MaxMovementSpeed;
+        maximumHorizontalVelocity = relativeMoveInput;
+        maximumHorizontalVelocity *= MaxMovementSpeed;
 
         //Process acceleration
-        currentHorizontalVelocity = Vector3.Lerp(currentHorizontalVelocity, desiredHorizontalVelocity, MovementAcceleration * Time.deltaTime);
+        currentHorizontalVelocity = Vector3.Lerp(currentHorizontalVelocity, maximumHorizontalVelocity, MovementAcceleration * Time.deltaTime);
     }
 
     private void ProcessVerticalVelocity()
@@ -92,6 +95,10 @@ public class CharacterMovement : MonoBehaviour
     {
         currentVelocity = currentHorizontalVelocity + currentVerticalVelocity;
 
+        //Add the external velocity to the current velocity. This could come from
+        //rigidbody that are touched by the Character Controller for instance
+        currentVelocity += externalVelocity * ExternalForceMultiplier;
+
         controller.Move(currentVelocity * Time.deltaTime);
     }
 
@@ -114,5 +121,10 @@ public class CharacterMovement : MonoBehaviour
     void OnJump(InputValue input)
     {
         jumpInput = (input.Get<float>() > 0) ? true : false;
+    }
+
+    public void AddExternalVelocity(Vector3 velocity)
+    {
+        externalVelocity = velocity;
     }
 }

@@ -13,8 +13,7 @@ GameObject:
   - component: {fileID: 8796561996001820000}
   - component: {fileID: 3686602228934703250}
   - component: {fileID: 4355041301425357998}
-  - component: {fileID: 2433446100989722263}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -211,7 +210,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2450
+  m_VersionIndex: 2468
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -294,28 +293,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1404830551748134467}
   m_Mesh: {fileID: 0}
---- !u!64 &2433446100989722263
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1404830551748134467}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
 --- !u!1 &1714400318878719639
 GameObject:
   m_ObjectHideFlags: 0
@@ -328,7 +305,8 @@ GameObject:
   - component: {fileID: 2606532444386359891}
   - component: {fileID: 3544816668085361244}
   - component: {fileID: 3561626158317890306}
-  m_Layer: 0
+  - component: {fileID: 8792117315295859337}
+  m_Layer: 11
   m_Name: Player Character
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -421,8 +399,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxMovementSpeed: 5
   MovementAcceleration: 10
-  JumpForce: 1
+  JumpForce: 1.5
   RotationAcceleration: 5
+  ExternalForceMultiplier: 0.5
+--- !u!114 &8792117315295859337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1714400318878719639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0af8962342d516945a89459ba78b2f0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pushForce: {x: 1, y: 1, z: 1}
 --- !u!1 &3151768159591151772
 GameObject:
   m_ObjectHideFlags: 0
@@ -434,7 +426,7 @@ GameObject:
   - component: {fileID: 2591204750431122859}
   - component: {fileID: 2314757018813817465}
   - component: {fileID: 1923833456542717829}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Character Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
