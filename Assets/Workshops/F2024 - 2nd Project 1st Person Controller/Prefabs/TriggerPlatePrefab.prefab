@@ -1065,7 +1065,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 1011
+  m_VersionIndex: 999
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -1211,7 +1211,7 @@ GameObject:
   - component: {fileID: 8427175293107584527}
   - component: {fileID: 5773601325371983433}
   - component: {fileID: 7802043603907291512}
-  - component: {fileID: 1193783972509046068}
+  - component: {fileID: 2069558325844497505}
   m_Layer: 10
   m_Name: Trigger
   m_TagString: Untagged
@@ -1302,9 +1302,9 @@ Rigidbody:
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 1
---- !u!135 &1193783972509046068
-SphereCollider:
+  m_CollisionDetection: 0
+--- !u!65 &2069558325844497505
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1318,11 +1318,11 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 1.05
+  m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2454174496145868862
 GameObject:

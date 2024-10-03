@@ -5,13 +5,12 @@ using UnityEngine.Events;
 
 public class TriggerEvent : MonoBehaviour
 {
-    public UnityEvent TriggerEnterEvent;
+    public UnityEvent<Collider> TriggerEnterEvent;
     public UnityEvent TriggerExitEvent;
 
     private void OnTriggerEnter(Collider other)
     {
-        TriggerEnterEvent.Invoke();
-        Debug.Log("DFSDF");
+        TriggerEnterEvent.Invoke(other);
     }
 
     private void OnTriggerExit(Collider other)
